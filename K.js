@@ -1,11 +1,12 @@
 angular.module('myApp', [])
-.controller('MainCtrl', function($scope) {
+.controller('MainCtrl', ['$scope', function($scope) {
   
   // State
   $scope.view = 'home'; // home, post, about
   $scope.isDark = localStorage.getItem('theme') === 'dark';
   $scope.search = "";
   $scope.activePost = {};
+  $scope.name = "";
   $scope.msg = "";
 
   // Save theme
@@ -18,31 +19,31 @@ angular.module('myApp', [])
     window.scrollTo(0,0);
   };
 
-  // Blog Data - Add new posts here
+  // Blog Data
   $scope.posts = [
     {
       id: 1, 
-      title: "angularjs filter broke my brain today", 
+      title: "learning data structures & algorithms", 
       date: "2026-07-28", 
-      excerpt: "spent 2 hours because i forgot to inject $scope. classic.", 
-      body: "spent 2 hours debugging.\n\nturns out i forgot to inject $scope into the controller.\n\nnote to self: always check console first. then stackoverflow. then cry.\n\nangular is old but it teaches you how binding actually works.",
-      tags: ["angular", "debugging"]
+      excerpt: "tackling pointers, arrays, and recursion one problem at a time.", 
+      body: "started focusing heavily on data structures and algorithms today.\n\nworking through time complexities and getting comfortable with arrays, linked lists, and recursion.\n\nit's challenging at first, but breaking down problems step-by-step makes patterns much clearer.",
+      tags: ["dsa", "coding"]
     },
     {
       id: 2, 
-      title: "potatoes and chain reactions", 
+      title: "understanding the 8085 microprocessor", 
       date: "2026-07-27", 
-      excerpt: "one sprouting potato releases ethylene gas and ruins the whole bag.", 
-      body: "learned this in bio today.\none bad potato releases gas that makes others sprout faster.\n\nfeels like a metaphor for procrastination too.\none bad habit spoils the whole week.\n\nweird what you remember from class.",
-      tags: ["random", "college"]
+      excerpt: "exploring registers, timing diagrams, and basic assembly instructions.", 
+      body: "diving into hardware architecture and low-level code with the 8085 microprocessor.\n\nlearning how registers (A, B, C, D, E, H, L) interact with memory and how the ALU executes opcode cycles.\n\nwriting basic assembly code really changes how you view high-level languages.",
+      tags: ["microprocessor", "college"]
     },
     {
       id: 3, 
-      title: "why i stopped using templates", 
+      title: "practicing object-oriented programming in java", 
       date: "2026-07-25", 
-      excerpt: "everyone is selling the same landing page. so i built this.", 
-      body: "was looking at 'portfolio templates'.\nall of them look identical.\n\ndecided to build something i'd actually want to read.\nsomething messy, personal, and mine.\n\nthis is it. no 'hire me' button.",
-      tags: ["projects", "thoughts"]
+      excerpt: "applying encapsulation, inheritance, and polymorphism in real examples.", 
+      body: "building small projects in Java to solidify core OOP concepts.\n\nfocusing on how interfaces, abstraction, and inheritance keep code modular and reusable.\n\nwriting clean class hierarchies helps prevent messy refactoring later.",
+      tags: ["java", "oop"]
     }
   ];
 
@@ -52,9 +53,10 @@ angular.module('myApp', [])
   };
 
   $scope.sendMsg = function() {
-    if($scope.msg.trim() === "") return;
-    alert("Thanks for the note! \n\nThis is a static site so I won't actually receive it, but: " + $scope.msg);
+    if (!$scope.msg.trim()) return;
+    alert("Thanks " + ($scope.name || "friend") + "! \n\nThis is a static site so I won't actually receive it, but: " + $scope.msg);
+    $scope.name = "";
     $scope.msg = "";
   };
 
-});
+}]);
