@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Personal notes on code, college, and things I learn">
   <title>myApp Digital Notebook</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="styles.css">
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular.min.js"></script>
-  <script src="app.js" defer></script>
+  <script src="k.js" defer></script>
 </head>
 <body ng-controller="MainCtrl" ng-class="{'dark': isDark}">
   <nav>
@@ -36,7 +36,6 @@
       </article>
       <p ng-show="(posts | filter:search).length == 0">no notes found.</p>
     </section>
-
     <!-- POST VIEW -->
     <section ng-show="view == 'post'" class="post-full">
       <a href="#" ng-click="setView('home')" class="back-link">← back to all notes</a>
@@ -47,14 +46,11 @@
       </div>
       <p style="white-space: pre-line;">{{activePost.body}}</p>
     </section>
-
     <!-- ABOUT + CONTACT VIEW -->
     <section ng-show="view == 'about'" ng-include="'about-contact.html'"></section>
   </main>
-
   <footer>
     <p>built with angularjs. hosted on github pages.</p>
   </footer>
-
 </body>
 </html>
